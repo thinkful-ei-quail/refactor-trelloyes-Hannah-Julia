@@ -25,11 +25,12 @@ class App extends Component {
   state = {
     store: STORE
   };
-  handleDeleteCard= (cardId) => {
+  handleDeleteCard = (cardId) => {
     const { lists, allCards } = this.state.store;
 
     const newLists = lists.map(list => ({
-      ...list, cardIds: list.cardIds.filter(id => id !== cardId)
+      ...list, 
+      cardIds: list.cardIds.filter(id => id !== cardId)
     }));
 
     const newCards = omit(allCards, cardId);
@@ -57,7 +58,8 @@ class App extends Component {
       store: {
         lists: newLists,
         allCards: {
-          ...this.state.store.allCards, [newCard.id]: newCard
+          ...this.state.store.allCards, 
+          [newCard.id]: newCard
         }
       }
     })
@@ -74,9 +76,9 @@ class App extends Component {
             {store.lists.map(list => (
               <List 
                 key = {list.id}
-                id={list.id}
+                id= {list.id}
                 header = {list.header}
-                cards = {list.cardIds.map((id) => store.allCards[id])}
+                cards = {list.cardIds.map(id => store.allCards[id])}
                 onClickDelete={this.handleDeleteCard}
                 onClickAdd={this.handleAddCard}
               />               
@@ -88,15 +90,3 @@ class App extends Component {
 }
 
 export default App;
-
-//RANDOM BUTTON FUNCTION
-
-
-
-// // Example
-// const objectWithKVPs = {
-//   key: 'value',
-//   foo: 'foo value',
-//   bar: 'bar value',
-//   abc: { nested: 'object' }
-// }

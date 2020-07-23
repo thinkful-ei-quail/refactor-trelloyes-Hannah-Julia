@@ -3,15 +3,16 @@ import Card from './Card'
 import './styles/List.css';
 
 export default class List extends Component {
-
     render() {
+        const {cards} = this.props;
         return (
             <section className="List">
                 <header className="List-header">
                     <h2>{this.header}</h2>
                 </header>
                 <div className="List-cards">
-                    {this.props.cards.map((card) =>
+                    
+                    {cards.map((card) =>
                         <Card
                             key={card.id}
                             id={card.id}
@@ -20,15 +21,11 @@ export default class List extends Component {
                             onClickDelete={this.props.onClickDelete}
                         />
                     )}
-                    <button type="button" className="List-add-button" onClick={() => this.props.onClickAdd(this.props.id)}>
+                    <button type="button" className="List-add-button" onClick={() => this.onClickAdd(this.props.id)}>
                         + Add Random Card
                     </button>
                 </div>
             </section>
         )
     }
-}
-
-List.defaultProps = {
-    onClickAdd: () => {}
 }
